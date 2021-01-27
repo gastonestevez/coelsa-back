@@ -62,7 +62,7 @@
           <Property Name="Created_At" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Updated_At" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityContainer Name="COELSA_APIEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="COELSADB_APIEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="News" EntityType="COELSA_APIModel.New" />
           <EntitySet Name="Users" EntityType="COELSA_APIModel.User" />
         </EntityContainer>
@@ -71,7 +71,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="COELSA_APIModelStoreContainer" CdmEntityContainer="COELSA_APIEntities">
+        <EntityContainerMapping StorageEntityContainer="COELSA_APIModelStoreContainer" CdmEntityContainer="COELSADB_APIEntities">
           <EntitySetMapping Name="News">
             <EntityTypeMapping TypeName="COELSA_APIModel.New">
               <MappingFragment StoreEntitySet="News">
@@ -113,7 +113,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

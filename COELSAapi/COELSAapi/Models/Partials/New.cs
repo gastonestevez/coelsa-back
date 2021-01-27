@@ -11,7 +11,7 @@ namespace COELSAapi.Models
 
         public New(string title, string link, string context, DateTime created_at)
         {
-            this.Title = 
+            this.Title = title;
             this.Link = link;
             this.Context = context;            
             this.Created_At = created_at;

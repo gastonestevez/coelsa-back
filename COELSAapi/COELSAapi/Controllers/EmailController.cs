@@ -11,26 +11,46 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace COELSAapi.Controllers
 {
     [RoutePrefix("api/email")]
     public class EmailController : ApiController
     {
+        /// <summary>
+        /// Envia un e-mail
+        /// </summary>
+        /// <param name="email">Email entity</param>        
         [HttpPost]
-        public async Task SendEmail(Email email)
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> SendEmail(Email email)
         {
-            var message = new MailMessage();
-            message.To.Add(new MailAddress(UtilCodes.DestinatarioEmail));
-            message.From = new MailAddress(email.EmailContact);
-            message.Subject = UtilCodes.GetAsuntoEmail(email.Asunto);
-            message.Body = CreateEmailBody(email);
-            message.IsBodyHtml = true;
-            using (var smtp = new SmtpClient())
-            {                
-                await smtp.SendMailAsync(message);
-                await Task.FromResult(0);
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+                var message = new MailMessage();
+                message.To.Add(new MailAddress(UtilCodes.DestinatarioEmail));
+                message.From = new MailAddress(email.EmailContact);
+                message.Subject = email.AsuntoDescripcion;
+                message.Body = CreateEmailBody(email);
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                    await Task.FromResult(0);
+                }
+
+                return Ok();
             }
+            catch (Exception)
+            {
+                //log
+                return StatusCode(HttpStatusCode.InternalServerError);
+            }                        
         }
 
         private string CreateEmailBody(Email email)

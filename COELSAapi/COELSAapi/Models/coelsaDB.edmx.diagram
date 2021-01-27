@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f5489fbf4a534d40b8977382cae6382f" Name="Diagram1">
+      <Diagram DiagramId="05122261f68f4ac4abaf926693d4aa68" Name="Diagram1">
         <EntityTypeShape EntityType="COELSA_APIModel.New" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="COELSA_APIModel.User" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>

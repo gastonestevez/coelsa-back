@@ -6,42 +6,29 @@ using System.Web;
 
 namespace COELSAapi.Models
 {
-    [MetadataType(typeof(MetaData))]
+   
     public partial class User
     {        
         public User()
         {
-            this.Created_At = DateTime.Now;
+            this.Id = UtilCodes.IdRoleGestor;
             this.Updated_At = DateTime.Now;
         }
-        public User(string name,string email,string password,int role) : this()
+        public User(string name,string email,string password,int role, DateTime created_at,string company) : this()
         {
             this.Name = name;
             this.Email = email;
             this.Password = password;
-            this.Role = role;                        
-        }        
+            this.Role = role;
+            this.Created_At = created_at;
+            this.Company = company;            
+        }
+
 
         public override string ToString()
         {
             return $"Name: {this.Name} - E-mail: {this.Email}";
-        }        
-
-        sealed class MetaData
-        {
-            [Required]
-            public string Name;
-            [Required]
-            public string Email;
-            [Required]
-            public string Password;
-            [Required]
-            public int Role;   
-            public DateTime Created_At { get; private set; }
-            public DateTime Updated_At { get; private set; }
-            public bool Marcado { get; private set; }
-            
-    
         }
+
     }
 }

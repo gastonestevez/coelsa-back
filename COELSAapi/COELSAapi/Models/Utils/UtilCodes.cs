@@ -47,6 +47,10 @@ namespace COELSAapi.Models
             }
         }
 
+        /// <summary>
+        /// Devuelve la descripcion del asunto email
+        /// </summary>
+        /// <param name="idAsunto">Id Asunto</param>        
         public static string GetAsuntoEmail(int idAsunto)
         {
             switch (idAsunto)

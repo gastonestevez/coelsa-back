@@ -13,10 +13,10 @@ namespace COELSAapi.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class COELSA_APIEntities : DbContext
+    public partial class COELSADB_APIEntities : DbContext
     {
-        public COELSA_APIEntities()
-            : base("name=COELSA_APIEntities")
+        public COELSADB_APIEntities()
+            : base("name=COELSADB_APIEntities")
         {
         }
     

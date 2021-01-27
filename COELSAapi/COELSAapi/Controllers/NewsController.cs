@@ -6,27 +6,29 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using COELSAapi.Models;
+using COELSAapi.Models.DataModels;
 
 namespace COELSAapi.Controllers
 {
-    public class NewController : ApiController
+    public class NewsController : ApiController
     {
-        private PocoCOELSA_APIEntities db = new PocoCOELSA_APIEntities();
+        private COELSADB_APIEntities db = new COELSADB_APIEntities();
 
-        // GET: api/New
-        public IQueryable<New> GetNews()
+        // GET: api/News
+        public List<New> GetNews()
         {
-            return db.News;
+            return db.News.ToList();
         }
 
-        // GET: api/New/5
+        // GET: api/News/5
         [ResponseType(typeof(New))]
-        public IHttpActionResult GetNew(int id)
+        public async Task<IHttpActionResult> GetNew(int id)
         {
-            New @new = db.News.FirstOrDefault(n => n.Id == id);
+            New @new = await db.News.FindAsync(id);
             if (@new == null)
             {
                 return NotFound();
@@ -35,27 +37,29 @@ namespace COELSAapi.Controllers
             return Ok(@new);
         }
 
-        // PUT: api/New/5
+        // PUT: api/News/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutNew(int id, New @new)
+        public async Task<IHttpActionResult> PutNew(int id, NewsData @new)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != @new.Id)
+            var @newDB = db.News.FindAsync(id);
+
+            if (id != @newDB.Id)
             {
                 return BadRequest();
             }
 
-            //db.Entry(@new).State = EntityState.Modified;
-            db.News.ApplyCurrentValues(@new);             
-            db.SaveChanges();
+            @new.Updated_At = DateTime.Now;
+
+            db.Entry(@new).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,33 +76,35 @@ namespace COELSAapi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/New
+        // POST: api/News
         [ResponseType(typeof(New))]
-        public IHttpActionResult PostNew(New @new)
+        public async Task<IHttpActionResult> PostNew(NewsData newData)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.News.AddObject(@new);
-            db.SaveChanges();
+            var @new = new New(newData.Title, newData.Link, newData.Context, DateTime.Now);
+
+            db.News.Add(@new);
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = @new.Id }, @new);
         }
 
-        // DELETE: api/New/5
+        // DELETE: api/News/5
         [ResponseType(typeof(New))]
-        public IHttpActionResult DeleteNew(int id)
+        public async Task<IHttpActionResult> DeleteNew(int id)
         {
-            New @new = db.News.FirstOrDefault(n => n.Id == id);
+            New @new = await db.News.FindAsync(id);
             if (@new == null)
             {
                 return NotFound();
             }
 
-            db.News.DeleteObject(@new);
-            db.SaveChanges();
+            db.News.Remove(@new);
+            await db.SaveChangesAsync();
 
             return Ok(@new);
         }
