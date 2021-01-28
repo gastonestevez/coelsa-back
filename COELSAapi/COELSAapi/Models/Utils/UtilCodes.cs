@@ -28,20 +28,22 @@ namespace COELSAapi.Models
 
         public static string DestinatarioEmail = string.Empty;
 
-        public const int IdRoleAdmin = 1;
-        public const int IdRoleGestor = 2;
-
-        public static string RoleAdminName = "Admin";
-        public static string RoleAdminGestor = "Gestor de Novedades";
+        public enum Role
+        {
+            Admin = 1,
+            NewsSetter = 2
+        }
+        public static string RoleAdmin = "Admin";
+        public static string RoleNewsSetter = "Gestor de Novedades";
 
         public static string GetRoleName(int idRole)
         {
             switch (idRole)
             {
-                case IdRoleAdmin:
-                    return RoleAdminName;
-                case IdRoleGestor:
-                    return RoleAdminGestor;
+                case (int)Role.Admin:
+                    return RoleAdmin;
+                case (int)Role.NewsSetter:
+                    return RoleNewsSetter;
                 default:
                     return string.Empty;
             }

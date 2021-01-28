@@ -11,9 +11,14 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Mvc;
 using COELSAapi.Models;
+using COELSAapi.Models.Utils;
+using static COELSAapi.Models.UtilCodes;
+using AuthorizeAttribute = System.Web.Http.AuthorizeAttribute;
 
 namespace COELSAapi.Controllers
 {
+    [Authorize]
+    [AuthorizeEnum(Role.Admin)]
     public class UsersController : ApiController
     {
         private COELSADB_APIEntities db = new COELSADB_APIEntities();
@@ -24,6 +29,7 @@ namespace COELSAapi.Controllers
         /// </summary>        
         public List<User> GetUsers()
         {
+            
             return db.Users.ToList();
         }
 
@@ -130,6 +136,8 @@ namespace COELSAapi.Controllers
             return Ok(user);
         }
 
+        
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -138,6 +146,8 @@ namespace COELSAapi.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
 
         private bool UserExists(int id)
         {

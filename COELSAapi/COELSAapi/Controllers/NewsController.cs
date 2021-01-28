@@ -11,9 +11,13 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using COELSAapi.Models;
 using COELSAapi.Models.DataModels;
+using COELSAapi.Models.Utils;
+using static COELSAapi.Models.UtilCodes;
 
 namespace COELSAapi.Controllers
-{
+{    
+    [Authorize]
+    [AuthorizeEnum(Role.Admin, Role.NewsSetter)]
     public class NewsController : ApiController
     {
         private COELSADB_APIEntities db = new COELSADB_APIEntities();

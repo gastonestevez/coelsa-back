@@ -481,6 +481,22 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:COELSAapi.Controllers.LoginController">
+            <summary>
+            login controller class for authenticate users
+            </summary>
+        </member>
+        <member name="T:COELSAapi.Controllers.TokenGenerator">
+            <summary>
+            JWT Token generator class using "secret-key"
+            more info: https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
+            </summary>
+        </member>
+        <member name="T:COELSAapi.Controllers.TokenValidationHandler">
+            <summary>
+            Token validator for Authorization Request using a DelegatingHandler
+            </summary>
+        </member>
         <member name="M:COELSAapi.Controllers.UsersController.GetUsers">
             <summary>
             Devuelve una lista de usuarios
@@ -491,6 +507,14 @@
             Devuelve un usuario
             </summary>
             <param name="id">Id del usuario</param>        
+        </member>
+        <member name="M:COELSAapi.Controllers.UsersController.PutUser(System.Int32,COELSAapi.Models.UserData)">
+            <summary>
+            Modifica un usuario ya existente
+            </summary>
+            <param name="id">Id del usuario</param>
+            <param name="user">User entity</param>
+            <returns></returns>
         </member>
         <member name="M:COELSAapi.Controllers.UsersController.PostUser(COELSAapi.Models.UserData)">
             <summary>
