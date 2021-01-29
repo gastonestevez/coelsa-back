@@ -56,10 +56,16 @@ namespace COELSAapi.Controllers
 
             var user = new User(userData.Name, userData.Email, userData.Password, userData.Role, DateTime.Now, userData.Company);
 
+            var userDB = db.Users.FirstOrDefault(u => u.Email == user.Email);
+            if(userDB != null)
+            {
+                return BadRequest("El e-mail ingresado ya existe");
+            }
+
             db.Users.Add(user);
             db.SaveChanges();
 
-            return CreatedAtRoute("api/Login", new { id = user.Id }, user);
+            return Ok(user);
 
         }
     }

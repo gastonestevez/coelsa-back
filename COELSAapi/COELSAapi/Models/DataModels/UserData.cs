@@ -8,12 +8,11 @@ using System.Web;
 namespace COELSAapi.Models
 {
     public class UserData
-    {
+    {        
         public UserData()
         {
             this.Created_At = DateTime.Now;
         }
-
         [DataMember]
         [Required]
         [MaxLength(150)]
@@ -39,9 +38,10 @@ namespace COELSAapi.Models
         [DataMember]
         [Required,EmailAddress]
         [MaxLength(250)]
-        public string Email { get; set; }       
-            
-        public DateTime Created_At { get; set; }
+        public string Email { get; set; }
+        
         public DateTime Updated_At { get; set; }
+
+        public DateTime Created_At { get; set; }
     }
 }
