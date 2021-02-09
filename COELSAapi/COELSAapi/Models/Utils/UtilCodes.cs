@@ -27,6 +27,7 @@ namespace COELSAapi.Models
         public static string AsuntoOtro = "Otro";
 
         public static string DestinatarioEmail = string.Empty;
+        public static string ClienteWeb = string.Empty;
 
         public enum Role
         {

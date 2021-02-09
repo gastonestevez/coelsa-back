@@ -16,6 +16,7 @@ namespace COELSAapi.Controllers
         public ActionResult Index()
         {
             UtilCodes.DestinatarioEmail = WebConfigurationManager.AppSettings["DestinatarioEmail"];
+            UtilCodes.ClienteWeb = WebConfigurationManager.AppSettings["ClienteWeb"];
             ViewBag.Title = "Home Page";
 
             return View();
