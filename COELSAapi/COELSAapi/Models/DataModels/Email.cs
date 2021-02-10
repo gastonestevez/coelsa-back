@@ -46,7 +46,6 @@ namespace COELSAapi.Models
         public string Nombre { get; set; }
 
         [DataMember]
-        [Required]
         [MinLength(2)]
         [MaxLength(100)]
         public string Apellido { get; set; }

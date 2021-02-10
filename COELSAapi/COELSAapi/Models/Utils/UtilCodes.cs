@@ -24,7 +24,7 @@ namespace COELSAapi.Models
         public static string AsuntoAccionistas = "Accionistas";
         public static string AsuntoPagoDirecto = "Pago directo";
         public static string AsuntoFeriadoLocal = "Feriado local";
-        public static string AsuntoOtro = "Otro";
+        public static string AsuntoOtro = "Sitio COELSA - Contacto";
 
         public static string DestinatarioEmail = string.Empty;
         public static string ClienteWeb = string.Empty;
