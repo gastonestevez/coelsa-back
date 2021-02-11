@@ -184,9 +184,9 @@ namespace COELSAapi
                         //
                         //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
                         c.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
-                    })
+                    });
                 
-                .EnableSwaggerUi(c =>
+                /*.EnableSwaggerUi(c =>
                     {
                         // Use the "DocumentTitle" option to change the Document title.
                         // Very helpful when you have multiple Swagger pages open, to tell them apart.
@@ -258,7 +258,7 @@ namespace COELSAapi
                         // "apiKeyIn" can either be "query" or "header"
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
-                    });
+                    });*/
 
         }
 

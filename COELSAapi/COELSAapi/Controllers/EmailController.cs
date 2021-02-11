@@ -46,7 +46,7 @@ namespace COELSAapi.Controllers
 
                 return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //log
                 return StatusCode(HttpStatusCode.InternalServerError);

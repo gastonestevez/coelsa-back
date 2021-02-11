@@ -66,11 +66,11 @@ namespace COELSAapi.Controllers
                 
                 return base.SendAsync(request, cancellationToken);
             }
-            catch (SecurityTokenValidationException)
+            catch (SecurityTokenValidationException ex)
             {
                 statusCode = HttpStatusCode.Unauthorized;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 statusCode = HttpStatusCode.InternalServerError;
             }

@@ -45,8 +45,14 @@ namespace COELSAapi.Controllers
         }
 
         private async Task<User> AutenticarUsuarioAsync(string email, string password)
-        {
-            return db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+        {   try
+            {
+                var user = db.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+                return user;
+            }catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         private async Task<User> GetUserByEmail(string email)

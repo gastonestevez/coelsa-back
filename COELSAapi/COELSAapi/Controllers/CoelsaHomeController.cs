@@ -10,9 +10,10 @@ using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace COELSAapi.Controllers
-{
-    public class HomeController : Controller
+{    
+    public class CoelsaHomeController : Controller
     {
+        
         public ActionResult Index()
         {
             UtilCodes.DestinatarioEmail = WebConfigurationManager.AppSettings["DestinatarioEmail"];
